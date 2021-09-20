@@ -464,6 +464,27 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "^2.4.0"
 
+"@radix-ui/react-popover@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-0.1.0.tgz#648c94f0c7492690b58e3a42c3aac75868d3c5e8"
+  integrity sha512-tRJXDtVs0lA3FKITQiRsiqeJo+BNMz+S1y88gHgoCEHSsF8XdlcOj3qrYx/F+B19l/hXGU1JKWJ0bfirfeV/aw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/primitive" "0.1.0"
+    "@radix-ui/react-compose-refs" "0.1.0"
+    "@radix-ui/react-context" "0.1.0"
+    "@radix-ui/react-dismissable-layer" "0.1.0"
+    "@radix-ui/react-focus-guards" "0.1.0"
+    "@radix-ui/react-focus-scope" "0.1.0"
+    "@radix-ui/react-id" "0.1.0"
+    "@radix-ui/react-popper" "0.1.0"
+    "@radix-ui/react-portal" "0.1.0"
+    "@radix-ui/react-presence" "0.1.0"
+    "@radix-ui/react-primitive" "0.1.0"
+    "@radix-ui/react-use-controllable-state" "0.1.0"
+    aria-hidden "^1.1.1"
+    react-remove-scroll "^2.4.0"
+
 "@radix-ui/react-popper@0.1.0":
   version "0.1.0"
   resolved "https://registry.npmjs.org/@radix-ui/react-popper/-/react-popper-0.1.0.tgz"
@@ -812,10 +833,10 @@
     "@typescript-eslint/types" "4.31.1"
     eslint-visitor-keys "^2.0.0"
 
-"@xooom/ui@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@xooom/ui/-/ui-0.3.1.tgz#a6df7e53c9b77689e0a72acf056bbba77db2374e"
-  integrity sha512-SUzUBAmE4oiLMXiq1+wwLq+Uo2NRAYcgPl0flGciJU/D6UfOZi5vRDWRSWLXM341VWHXGE7BsR0dUjh4Vfra8g==
+"@xooom/ui@^0.3.2":
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/@xooom/ui/-/ui-0.3.2.tgz#6545fb164b43fb7c3d3de6ef9583c821698f32c9"
+  integrity sha512-lK2zypogz7p6Z2805RMT0TrF3ebzbtpRMU49irtUNWXn5BZoP2Z7Uoo4NA+yelINUiJSYEq0SZC4nVs6bkJgCA==
   dependencies:
     "@radix-ui/colors" "^0.1.7"
     "@radix-ui/react-accordion" "^0.1.0"
@@ -830,6 +851,7 @@
     "@radix-ui/react-icons" "^1.0.3"
     "@radix-ui/react-id" "^0.1.0"
     "@radix-ui/react-label" "^0.1.0"
+    "@radix-ui/react-popover" "^0.1.0"
     "@radix-ui/react-progress" "^0.1.0"
     "@radix-ui/react-radio-group" "^0.1.0"
     "@radix-ui/react-scroll-area" "^0.1.0"
