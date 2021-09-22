@@ -11,6 +11,7 @@ import {
   Image,
   Checkbox,
   AspectRatio,
+  Button,
   Input,
 } from '@xooom/ui'
 import Link from 'next/link'
@@ -20,6 +21,7 @@ import { GrGroup } from 'react-icons/gr'
 import { IoToday } from 'react-icons/io5'
 import { useState } from 'react'
 import { useMemo } from 'react'
+import { useMediaQuery } from 'react-responsive/'
 
 const graphcms = new GraphQLClient(process.env.GRAPHQL_URL_ENDPOINT!)
 
@@ -53,6 +55,7 @@ export default function Recipes({ recipes }) {
   const [isVegetarian, setIsVegetarian] = useState(false)
   const [days, setDays] = useState('')
   const [search, setSearch] = useState('')
+  const [resetVisible, setResetVisible] = useState(false)
 
   const recipesFiltered = useMemo(
     () =>
@@ -79,31 +82,43 @@ export default function Recipes({ recipes }) {
   return (
     <Canvas padding='lg'>
       <Center>
-        <Box className='wrapper'>
-          <Flex
-            css={{ jc: 'space-between', ai: 'center', marginBottom: '30px' }}
+        <Box>
+          <Box
+            css={{ jc: 'space-between', ai: 'center', marginBottom: '20px' }}
           >
             <Text as='h1' weight={700} size={6}>
               Opskrifter til Vervuurt/Nielsen-husholdningen
             </Text>
-            <Checkbox
-              label='Vegetarisk'
-              checked={isVegetarian}
-              onCheckedChange={() => setIsVegetarian(!isVegetarian)}
-            ></Checkbox>
-            <Input
-              type='number'
-              label='days'
-              value={days}
-              onChange={(e) => setDays(e.target.value)}
-            />
-            <Input
-              label='Name'
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-          </Flex>
+          </Box>
           <Stack gap='md'>
+            <Card padding='md'>
+              <Flex css={{ ai: 'center', jc: 'space-between' }}>
+                <Input
+                  type='number'
+                  label='Dage'
+                  value={days}
+                  onChange={(e) => setDays(e.target.value)}
+                />
+                <Input
+                  label='Navn'
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+                <Checkbox
+                  label='Vegetarisk'
+                  checked={isVegetarian}
+                  onCheckedChange={() => setIsVegetarian(!isVegetarian)}
+                ></Checkbox>
+                <Button onClick={() => setResetVisible(true)}>Random</Button>
+                {resetVisible || isVegetarian || days || search ? (
+                  <Button color='warning'>Reset</Button>
+                ) : (
+                  <Button color='warning' disabled>
+                    Reset
+                  </Button>
+                )}
+              </Flex>
+            </Card>
             {recipesFiltered.map((recipe) => {
               return (
                 <Link
