@@ -19,9 +19,11 @@ import NextImage from 'next/image'
 import { FaCarrot } from 'react-icons/fa'
 import { GrGroup } from 'react-icons/gr'
 import { IoToday } from 'react-icons/io5'
+import { BiCameraOff } from 'react-icons/bi'
 import { useState } from 'react'
 import { useMemo } from 'react'
 import { useMediaQuery } from 'react-responsive/'
+import { IconContext } from 'react-icons'
 
 const graphcms = new GraphQLClient(process.env.GRAPHQL_URL_ENDPOINT!)
 
@@ -79,9 +81,12 @@ export default function Recipes({ recipes }) {
     [recipes, isVegetarian, days, search]
   )
 
+  let randomRecipe =
+    recipesFiltered[Math.floor(Math.random() * recipesFiltered.length)]
+
   return (
     <Canvas padding='lg'>
-      <Center>
+      <Stack css={{ maxWidth: '1000px', margin: 'auto' }}>
         <Box>
           <Box
             css={{ jc: 'space-between', ai: 'center', marginBottom: '20px' }}
@@ -109,37 +114,85 @@ export default function Recipes({ recipes }) {
                   checked={isVegetarian}
                   onCheckedChange={() => setIsVegetarian(!isVegetarian)}
                 ></Checkbox>
-                <Button onClick={() => setResetVisible(true)}>Random</Button>
                 {resetVisible || isVegetarian || days || search ? (
-                  <Button color='warning'>Reset</Button>
+                  <Button
+                    color='warning'
+                    onClick={() => (
+                      setIsVegetarian(false), setSearch(''), setDays('')
+                    )}
+                  >
+                    Reset
+                  </Button>
                 ) : (
                   <Button color='warning' disabled>
                     Reset
                   </Button>
                 )}
+                <Link
+                  key={randomRecipe.key}
+                  as={`/recipe/${randomRecipe?.slug}`}
+                  href='recipe/[slug]'
+                >
+                  <Button>Random</Button>
+                </Link>
               </Flex>
             </Card>
             {recipesFiltered.map((recipe) => {
+              const imageExists = recipe?.image?.url
               return (
                 <Link
                   key={recipe?.id}
                   as={`/recipe/${recipe?.slug}`}
                   href='/recipe/[slug]'
                 >
-                  <Card padding='md' css={{ maxWidth: '100%' }}>
-                    <Flex css={{ ai: 'center', jc: 'space-between' }}>
-                      <Stack direction='row' css={{ flex: 1 }}>
-                        {/* {recipe?.image?.url && (
-                          <AspectRatio ratio={1}>
-                            <Image
-                              alt={recipe?.title}
-                              src={recipe?.image?.url}
-                              width={100}
-                              height={100}
-                            />
-                          </AspectRatio>
-                        )} */}
-                        <Text as='h2' weight={700} size={5}>
+                  <Card css={{ overflow: 'hidden' }}>
+                    <Flex
+                      css={{
+                        ai: 'center',
+                        jc: 'space-between',
+                        flexWrap: 'wrap',
+                        '@bp2': { flexWrap: 'nowrap' },
+                      }}
+                    >
+                      <Stack
+                        direction='row'
+                        css={{
+                          flex: 1,
+                          ai: 'center',
+                          minWidth: '100%',
+                          '@bp1': { width: 'auto' },
+                        }}
+                      >
+                        <Box
+                          css={{
+                            width: '100px',
+                            height: '100px',
+                            marginRight: '20px',
+                            backgroundColor: '$gray4',
+                            ai: 'center',
+                            jc: 'center',
+                            display: 'flex',
+                          }}
+                        >
+                          {imageExists ? (
+                            <AspectRatio ratio={1}>
+                              <Image
+                                alt={`Image of ${recipe?.title}`}
+                                src={recipe?.image?.url}
+                              />
+                            </AspectRatio>
+                          ) : (
+                            <IconContext.Provider
+                              value={{ color: '#737373', size: '2em' }}
+                            >
+                              <div>
+                                <BiCameraOff />
+                              </div>
+                            </IconContext.Provider>
+                          )}
+                        </Box>
+
+                        <Text as='h2' weight={700} size={5} css={{ flex: 1 }}>
                           {recipe?.title}
                         </Text>
                       </Stack>
@@ -184,7 +237,7 @@ export default function Recipes({ recipes }) {
             })}
           </Stack>
         </Box>
-      </Center>
+      </Stack>
     </Canvas>
   )
 }
