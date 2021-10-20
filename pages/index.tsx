@@ -128,11 +128,7 @@ export default function Recipes({ recipes }) {
                     Reset
                   </Button>
                 )}
-                <Link
-                  key={randomRecipe.key}
-                  as={`/recipe/${randomRecipe?.slug}`}
-                  href='recipe/[slug]'
-                >
+                <Link as={`/recipe/${randomRecipe?.slug}`} href='recipe/[slug]'>
                   <Button>Random</Button>
                 </Link>
               </Flex>
