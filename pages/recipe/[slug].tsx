@@ -156,11 +156,11 @@ export default function renderRecipe({ recipe }) {
                   >
                     Ingredienser
                   </Text>
-                  <p
+                  <div
                     dangerouslySetInnerHTML={{
                       __html: recipe.ingredients.html,
                     }}
-                  ></p>
+                  />
                 </Box>
                 <Box>
                   <Text
@@ -173,9 +173,9 @@ export default function renderRecipe({ recipe }) {
                   >
                     Sådan gør du
                   </Text>
-                  <p
+                  <div
                     dangerouslySetInnerHTML={{ __html: recipe.howTo.html }}
-                  ></p>
+                  />
                 </Box>
                 {recipe.notes && (
                   <Box>
@@ -189,9 +189,9 @@ export default function renderRecipe({ recipe }) {
                     >
                       Noter
                     </Text>
-                    <p
+                    <div
                       dangerouslySetInnerHTML={{ __html: recipe.notes.html }}
-                    ></p>
+                    />
                   </Box>
                 )}
               </Stack>
