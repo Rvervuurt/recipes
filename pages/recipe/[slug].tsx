@@ -118,14 +118,11 @@ export default function renderRecipe({ recipe }) {
             />
           </AspectRatio>
         ) : (
-          <IconContext.Provider value={{ color: '#737373', size: '2em' }}>
-            <div>
-              <BiCameraOff />
-            </div>
-          </IconContext.Provider>
+          ''
         )}
       </Box>
-      <Canvas padding='lg'>
+      {/* size={{ '@initial': '2', '@bp1': '5' }} */}
+      <Canvas padding={{ '@initial': 'sm', '@bp1': 'lg' }}>
         <Center>
           <Link href='/'>
             <Button css={{ marginBottom: '20px' }}>
@@ -138,7 +135,7 @@ export default function renderRecipe({ recipe }) {
                 <Text
                   as='h2'
                   weight={700}
-                  size={7}
+                  size={{ '@initial': '5', '@bp1': '7' }}
                   // css={{
                   //   marginBottom: '30px',
                   // }}
@@ -149,24 +146,19 @@ export default function renderRecipe({ recipe }) {
                   <Text
                     as='h3'
                     weight={700}
-                    size={5}
+                    size={{ '@initial': 2, '@bp1': 6 }}
                     css={{
                       marginBottom: '30px',
                     }}
                   >
                     Ingredienser
                   </Text>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: recipe.ingredients.html,
-                    }}
-                  />
                 </Box>
                 <Box>
                   <Text
                     as='h3'
                     weight={700}
-                    size={5}
+                    size={{ '@initial': 2, '@bp1': 5 }}
                     css={{
                       marginBottom: '30px',
                     }}
@@ -182,7 +174,7 @@ export default function renderRecipe({ recipe }) {
                     <Text
                       as='h3'
                       weight={700}
-                      size={5}
+                      size={{ '@initial': '3', '@bp1': '5' }}
                       css={{
                         marginBottom: '30px',
                       }}
