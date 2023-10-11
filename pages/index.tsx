@@ -103,6 +103,7 @@ export default function Recipes({ recipes }) {
                   label='Dage'
                   value={days}
                   onChange={(e) => setDays(e.target.value)}
+                  css={{}}
                 />
                 <Input
                   label='Navn'
@@ -128,11 +129,7 @@ export default function Recipes({ recipes }) {
                     Reset
                   </Button>
                 )}
-                <Link
-                  key={randomRecipe.key}
-                  as={`/recipe/${randomRecipe?.slug}`}
-                  href='recipe/[slug]'
-                >
+                <Link as={`/recipe/${randomRecipe?.slug}`} href='recipe/[slug]'>
                   <Button>Random</Button>
                 </Link>
               </Flex>
@@ -192,7 +189,12 @@ export default function Recipes({ recipes }) {
                           )}
                         </Box>
 
-                        <Text as='h2' weight={700} size={5} css={{ flex: 1 }}>
+                        <Text
+                          as='h2'
+                          weight={700}
+                          size={{ '@initial': 2, '@bp1': 9 }}
+                          css={{ flex: 1 }}
+                        >
                           {recipe?.title}
                         </Text>
                       </Stack>
